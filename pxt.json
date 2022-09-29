@@ -2,17 +2,13 @@
     "name": "9-28-lunar-lander-v0",
     "description": "",
     "dependencies": {
-        "device": "*",
-        "sprite-scaling": "*",
-        "arcade-minimap": "github:microsoft/arcade-minimap#v0.6.1"
+        "device": "*"
     },
     "files": [
         "main.blocks",
         "main.ts",
         "README.md",
-        "assets.json",
-        "tilemap.g.jres",
-        "tilemap.g.ts"
+        "assets.json"
     ],
     "testFiles": [
         "test.ts"
