@@ -5,6 +5,7 @@ namespace SpriteKind {
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     apple.ay = 25 * Math.sin(angle)
     apple.ax = 25 * Math.cos(angle)
+    fireball.setFlag(SpriteFlag.Invisible, false)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     angle += 15 * (3.14 / 180)
@@ -14,12 +15,33 @@ controller.right.onEvent(ControllerButtonEvent.Released, function () {
 })
 controller.A.onEvent(ControllerButtonEvent.Released, function () {
     apple.ay = 20
+    fireball.setFlag(SpriteFlag.Invisible, true)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileGrass2, function (sprite, location) {
     apple.setVelocity(0, -1)
 })
 let apple: Sprite = null
 let angle = 0
+let fireball: Sprite = null
+fireball = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . 4 . . . . . 
+    . . . . 2 . . . . 4 4 . . . . . 
+    . . . . 2 4 . . 4 5 4 . . . . . 
+    . . . . . 2 4 d 5 5 4 . . . . . 
+    . . . . . 2 5 5 5 5 4 . . . . . 
+    . . . . . . 2 5 5 5 5 4 . . . . 
+    . . . . . . 2 5 4 2 4 4 . . . . 
+    . . . . . . 4 4 . . 2 4 4 . . . 
+    . . . . . 4 4 . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Projectile)
+fireball.setFlag(SpriteFlag.AutoDestroy, true)
 angle = 0
 tiles.setCurrentTilemap(tilemap`level2`)
 effects.starField.startScreenEffect()
